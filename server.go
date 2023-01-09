@@ -36,6 +36,7 @@ func setupRoute(db *sql.DB) *echo.Echo {
 	serv.POST("/expenses", expenseHl.CreateExpenseHandler)
 	serv.GET("/expenses", expenseHl.GetExpensesHandler)
 	serv.GET("/expenses/:id", expenseHl.GetExpensesByIDHandler)
+	serv.PUT("/expenses/:id", expenseHl.UpdateExpenseHandler)
 
 	return serv
 }

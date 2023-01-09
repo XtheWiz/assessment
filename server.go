@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/xthewiz/assessment/expense"
 
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
@@ -33,6 +34,8 @@ func setupRoute(db *sql.DB) *echo.Echo {
 
 	expenseHl := expense.InitHandler(db)
 	serv.POST("/expenses", expenseHl.CreateExpenseHandler)
+	serv.GET("/expenses", expenseHl.GetExpensesHandler)
+	serv.GET("/expenses/:id", expenseHl.GetExpensesByIDHandler)
 
 	return serv
 }

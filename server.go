@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/xthewiz/assessment/expense"
@@ -20,7 +21,7 @@ func main() {
 }
 
 func start(server *echo.Echo) {
-	if err := server.Start(":2565"); err != nil && err != http.ErrServerClosed {
+	if err := server.Start(":" + os.Getenv("PORT")); err != nil && err != http.ErrServerClosed {
 		server.Logger.Fatal("Shutting down server...")
 	}
 
